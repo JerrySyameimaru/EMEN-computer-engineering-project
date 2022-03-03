@@ -12,7 +12,7 @@ void loop(){
 
 }
 
-float PID_cal(PID_Controller* pid_x, int Now_value, int Aim_value, char flag){
+float PID_cal(PID_Controller* pid_x, int Now_value, int Aim_value, char flag){  // flag means using integral part
   float error = Now_value - Aim_value;
   pid_x->set_error(error);
 

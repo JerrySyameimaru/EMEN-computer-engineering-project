@@ -36,7 +36,9 @@ public:
         return output_max;
     }
     float start_integral(){
-
+        integral += KI * error_now;
+        integral = integral > integral_max ? integral_max : integral;
+        integral = integral < -integral ? -integral_max : integral;
     }
 
 };
