@@ -1,5 +1,6 @@
 #include "pid.h"
 #include <Servo.h>
+#include <Wire.h>
 
 Servo servo_base;
 Servo servo_big_arm;
