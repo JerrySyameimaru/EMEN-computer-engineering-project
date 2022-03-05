@@ -1,7 +1,19 @@
 #include "pid.h"
+#include <Servo.h>
 
+Servo servo_base;
+Servo servo_big_arm;
+Servo servo_small_arm;
+Servo servo_catch;
+PID_Controller pid_base;
+PID_Controller pid_big_arm;
+PID_Controller pid_small_arm;
+PID_Controller pid_catch;
 void setup(){
-  
+  servo_base.attach(1);
+  servo_big_arm.attach(2);
+  servo_small_arm.attach(3);
+  servo_catch.attach(4);
 
 
 }
