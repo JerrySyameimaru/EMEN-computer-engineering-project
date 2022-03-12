@@ -21,10 +21,10 @@ void setup(){
   softSerial.begin(9600); //软串口通讯开启波特率9600，此项设置必须与蓝牙模块串口波特率一致
   softSerial.listen();    //开启软串口数据监听
   delay( 2000 );  
-  servo_base.attach(3);
-  servo_big_arm.attach(2);
-  servo_small_arm.attach(1);
-  servo_catch.attach(0);
+  servo_base.attach(3,0,180);
+  servo_big_arm.attach(2,40,135);
+  servo_small_arm.attach(1,45,105);
+  servo_catch.attach(0,0,180);
 
 
 }
