@@ -1,0 +1,76 @@
+#define PS2_DAT 10
+#define PS2_CMD 11
+#define PS2_CS 12
+#define PS2_CLK 13
+#include "PS2X_lib.h"
+#include "Servo.h"
+
+Servo servo_base;
+Servo servo_big_arm;
+Servo servo_small_arm;
+Servo servo_catch;
+
+PS2X ps2x;
+
+void setup(){
+  ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_CS, PS2_DAT, true, true);
+
+  servo_base.attach(A0);
+  servo_big_arm.attach(A1);
+  servo_small_arm.attach(A2);
+  servo_catch.attach(A3);
+  Serial.begin(9600);
+  servo_base.write(90);
+  delay(10);
+  servo_big_arm.write(90);
+  delay(10);
+  servo_small_arm.write(90);
+  delay(10);
+  servo_catch.write(90);
+  delay(10);
+}
+
+void loop(){
+  ps2x.read_gamepad(false,0);
+  if (ps2x.Analog(PSS_LX) > 130) {
+    servo_base.write((servo_base.read() + 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_LX) < 120) {
+    servo_base.write((servo_base.read() - 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_LY) > 130) {
+    servo_big_arm.write((servo_big_arm.read() + 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_LY) < 120) {
+    servo_big_arm.write((servo_big_arm.read() - 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_RX) > 130) {
+    servo_small_arm.write((servo_small_arm.read() + 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_RX) < 120) {
+    servo_small_arm.write((servo_small_arm.read() - 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_RY) > 130) {
+    servo_catch.write((servo_catch.read() + 1));
+    delay(10);
+
+  }
+  if (ps2x.Analog(PSS_RY) < 120) {
+    servo_catch.write((servo_catch.read() - 1));
+    delay(10);
+
+  }
+
+}
